@@ -1,5 +1,5 @@
-﻿
-//UC1-AddressBookSystem
+﻿//UC2
+
 namespace AddressBook
 {
     class AddresBook
@@ -12,28 +12,12 @@ namespace AddressBook
         public string zipcode;
         public string PhoneNumber;
         public string EmailId;
-
-        public void AdressBook(string FirstName, string LastName, string Address, string City, string State, string Zipcode, string PhoneNumber, string EmailId)
-        {
-            this.FirstName = FirstName;
-            this.LastName = LastName;
-            this.Address = Address;
-            this.City = City;
-            this.State = State;
-            this.zipcode = Zipcode;
-            this.PhoneNumber = PhoneNumber;
-            this.EmailId = EmailId;
-
-        }
     }
-    class Program
+    public class PersonDetail
     {
-        public static void Main(string[] args)
+        AddresBook addbook = new AddresBook();
+        public void SetPersonDetail()
         {
-            Console.WriteLine("Welcome to Address Book System");
-
-            AddresBook addbook = new AddresBook();
-
             Console.WriteLine("Enter First name");
             addbook.FirstName = Console.ReadLine();
             Console.WriteLine("Enter your Last name");
@@ -51,7 +35,40 @@ namespace AddressBook
             Console.WriteLine("enter your email id");
             addbook.EmailId = Console.ReadLine();
 
-            // Dictionary<String, string> myaddbook = new Dictionary<String, string>();
+        }
+
+        public void GetPersonDetail()
+        {
+            Dictionary<String, string> myaddbook = new Dictionary<String, string>();
+            myaddbook.Add("FirstName", addbook.FirstName);
+            myaddbook.Add("LastName", addbook.LastName);
+            myaddbook.Add("Address", addbook.Address);
+            myaddbook.Add("City", addbook.City);
+            myaddbook.Add("State", addbook.State);
+            myaddbook.Add("zipcode", addbook.zipcode);
+            myaddbook.Add("PhoneNumber", addbook.PhoneNumber);
+            myaddbook.Add("EmailID", addbook.EmailId);
+            
+            foreach (KeyValuePair<String, string> item in myaddbook)
+            {
+                Console.WriteLine(item.Key + " " + item.Value);
+            }
+        }        
+    }
+
+    class Program
+    {
+        public static void Main(string[] args)
+        {
+            PersonDetail perdeatil = new PersonDetail();
+            perdeatil.SetPersonDetail();
+            perdeatil.GetPersonDetail();
+            Console.WriteLine("enter 'y' for Add New Contact");
+            string ch = Console.ReadLine();
+            if (ch == "y")
+            {
+                perdeatil.SetPersonDetail();
+            }
         }
     }
 }
