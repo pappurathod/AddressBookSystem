@@ -22,7 +22,7 @@ namespace AddresBook
         {
             listgetDetail = new List<Person>();
         }
-        public void PersonAddress()
+        public void PersonAddress()   //get person detail
         {
             Person person = new Person();
             Console.WriteLine("Enter first name");
@@ -45,7 +45,7 @@ namespace AddresBook
             listgetDetail.Add(person);
 
         }
-        public void DispalyAddressBook()
+        public void DispalyAddressBook()   //show person detail
         {
             foreach (Person person in listgetDetail)
             {
@@ -60,7 +60,7 @@ namespace AddresBook
             }
         }
 
-        public void EditAddressBook(string firstname)
+        public void EditAddressBook(string firstname)  //modify person detail
         {
             
             foreach (Person person in listgetDetail)
@@ -90,6 +90,31 @@ namespace AddresBook
                 }                
             }                 
         }
+        public void DeleteAddressBook(string firstname)   //delete person detail
+        {
+            int count = 0;
+            int flag = 0; ;
+            foreach (Person person in listgetDetail)
+            {
+                if (firstname == person.firstName)
+                {
+                    flag = 1;
+                    break;
+                }
+                
+                count++;  //count records number
+            }
+            if (flag == 1)
+            {
+                listgetDetail.Remove(listgetDetail[count]);
+                Console.WriteLine("count = "+count);
+                Console.WriteLine("Contact deleted successfully");
+            }
+            else
+            {
+                Console.WriteLine("Contact not found!!");
+            }
+        }
     }
    class Program
     {
@@ -105,8 +130,9 @@ namespace AddresBook
                 
                 Console.WriteLine("1) Add a new contact to address book");
                 Console.WriteLine("2) Display address book");
-                Console.WriteLine("3) Edit existing contact using person's first name ");
-                Console.WriteLine("4) Exit");
+                Console.WriteLine("3) Edit existing contact using persons first_name ");
+                Console.WriteLine("4) Delete existing contact using persons first_name ");
+                Console.WriteLine("5) Exit");
                
                 choice = int.Parse(Console.ReadLine());
 
@@ -126,12 +152,19 @@ namespace AddresBook
                         persongetDetail.EditAddressBook(firstname);
                         break;
                     case 4:
-                        Console.WriteLine("Exit");
-                        break;                    
+                        Console.WriteLine("Enter first name");
+                        firstname = Console.ReadLine();
+                        persongetDetail.DeleteAddressBook(firstname);
+                        break;
+                    case 5:
+                        Console.WriteLine("Thank you");
+                        break;
+                    case 6:
+                        Console.WriteLine("Enter valid choice");
+                        break;
                 }
-            }while (choice != 4) ;
+            }while (choice != 5) ;
 
         }
     }
 }
-
