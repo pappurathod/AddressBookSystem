@@ -22,7 +22,7 @@ namespace AddresBook
         {
             listgetDetail = new List<Person>();
         }
-        public void PersonAddress()   //get person detail
+        public void PersonAddress()   //get persons detail
         {
             Person person = new Person();
             Console.WriteLine("Enter first name");
@@ -45,7 +45,7 @@ namespace AddresBook
             listgetDetail.Add(person);
 
         }
-        public void DispalyAddressBook()   //show person detail
+        public void DispalyAddressBook()   //show persons detail
         {
             foreach (Person person in listgetDetail)
             {
@@ -90,7 +90,7 @@ namespace AddresBook
                 }                
             }                 
         }
-        public void DeleteAddressBook(string firstname)   //delete person detail
+        public void DeleteAddressBook(string firstname)   //delete persons detail
         {
             int count = 0;
             int flag = 0; ;
@@ -102,12 +102,11 @@ namespace AddresBook
                     break;
                 }
                 
-                count++;  //count records number
+                count++;  //count records in number
             }
             if (flag == 1)
             {
                 listgetDetail.Remove(listgetDetail[count]);
-                Console.WriteLine("count = "+count);
                 Console.WriteLine("Contact deleted successfully");
             }
             else
