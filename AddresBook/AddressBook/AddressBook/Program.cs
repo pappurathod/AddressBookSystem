@@ -57,6 +57,7 @@ namespace AddresBook
                 Console.WriteLine("Zip code: " + person.zipCode);
                 Console.WriteLine("PhoneNumber: " + person.phoneNumber);
                 Console.WriteLine("EmailId: " + person.emailId);
+                Console.WriteLine("----------------------------\n");
             }
         }
 
@@ -136,8 +137,7 @@ namespace AddresBook
                 choice = int.Parse(Console.ReadLine());
 
                 switch (choice)
-                {
-                   
+                {                   
                     case 1:
                         persongetDetail.PersonAddress();                        
                         break;
@@ -158,11 +158,11 @@ namespace AddresBook
                     case 5:
                         Console.WriteLine("Thank you");
                         break;
-                    case 6:
+                    default:
                         Console.WriteLine("Enter valid choice");
                         break;
                 }
-            }while (choice != 5) ;
+            }while (choice != 5);
 
         }
     }
