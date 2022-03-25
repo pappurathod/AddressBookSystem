@@ -20,7 +20,7 @@ namespace AddresBook
         List<Person> listgetDetail;
         public PersonDetail()
         {
-            listgetDetail = new List<Person>();
+            listgetDetail = new List<Person>(); //list
         }
         public void PersonAddress()   //get persons detail
         {
@@ -43,7 +43,6 @@ namespace AddresBook
             person.emailId = Console.ReadLine();
 
             listgetDetail.Add(person);
-
         }
         public void DispalyAddressBook()   //show persons detail
         {
@@ -63,7 +62,7 @@ namespace AddresBook
 
         public void EditAddressBook(string firstname)  //modify person detail
         {
-            
+
             foreach (Person person in listgetDetail)
             {
                 if (firstname == person.firstName)
@@ -88,8 +87,8 @@ namespace AddresBook
                 else
                 {
                     Console.WriteLine("Contact not found!!");
-                }                
-            }                 
+                }
+            }
         }
         public void DeleteAddressBook(string firstname)   //delete persons detail
         {
@@ -102,7 +101,7 @@ namespace AddresBook
                     flag = 1;
                     break;
                 }
-                
+
                 count++;  //count records in number
             }
             if (flag == 1)
@@ -116,11 +115,30 @@ namespace AddresBook
             }
         }
     }
+
+    public class AddressBookCollection   //Add multiple address book
+    {
+        public Dictionary<string, PersonDetail> addressBookDictionary;
+        public AddressBookCollection()
+        {
+            addressBookDictionary = new Dictionary<string, PersonDetail>();
+        }
+        public void AddressBookNames()
+            {
+            foreach(var item in addressBookDictionary)
+            {
+                Console.WriteLine(item.Key);
+            }
+        }
+    }
+    
    class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address book management system!");
+
+            AddressBookCollection addressBookCollection = new AddressBookCollection();            
             PersonDetail persongetDetail = new PersonDetail();
             persongetDetail.PersonAddress();
             int choice;
@@ -132,7 +150,9 @@ namespace AddresBook
                 Console.WriteLine("2) Display address book");
                 Console.WriteLine("3) Edit existing contact using persons first_name ");
                 Console.WriteLine("4) Delete existing contact using persons first_name ");
-                Console.WriteLine("5) Exit");
+                Console.WriteLine("5) Add new Address book");
+                Console.WriteLine("6) List of address book");
+                Console.WriteLine("7) Exit");
                
                 choice = int.Parse(Console.ReadLine());
 
@@ -156,13 +176,26 @@ namespace AddresBook
                         persongetDetail.DeleteAddressBook(firstname);
                         break;
                     case 5:
+                        Console.WriteLine("Enter New Address Book Name");
+                        string addresBookName = Console.ReadLine();
+                        addressBookCollection.addressBookDictionary.Add(addresBookName, new PersonDetail());
+                        Console.WriteLine("Address Book {0} selected.", addresBookName);
+                        break;
+                    case 6:
+                        Console.WriteLine("List of all Address Books");
+                        foreach (var item in addressBookCollection.addressBookDictionary)
+                        {
+                            Console.WriteLine(item.Key);
+                        }
+                        break;
+                    case 7:
                         Console.WriteLine("Thank you");
                         break;
                     default:
                         Console.WriteLine("Enter valid choice");
                         break;
                 }
-            }while (choice != 5);
+            }while (choice != 7);
 
         }
     }
